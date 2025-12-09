@@ -13,7 +13,11 @@
             --white: #fff;
             --gray: #f9f9f9;
             --line: #e5e5e5;
-            --skill-bg: #f0f0f0; /* 스킬 이미지 배경색 (추출값) */
+            
+            /* [배경색] 이미지 배경과 동일하게 #EEEEEE 설정 */
+            --skill-bg: #EEEEEE; 
+            /* [테두리] 요청하신 #E0E0E0 설정 */
+            --skill-border: #E0E0E0; 
         }
 
         html { scroll-behavior: smooth; }
@@ -47,7 +51,7 @@
         }
         header nav a:hover::after { width: 100%; }
 
-        /* [SECTION 1] HERO (수정됨: 텍스트 크기 확대) */
+        /* [SECTION 1] HERO */
         .hero {
             height: 100vh; padding-top: 80px; display: flex; align-items: center;
             justify-content: space-between; padding-left: 5vw; padding-right: 5vw;
@@ -57,19 +61,12 @@
             font-size: 7vw; line-height: 0.9; font-weight: 900; text-transform: uppercase;
             letter-spacing: -3px; margin-bottom: 40px; word-break: keep-all;
         }
-        /* [수정 포인트] 서브 타이틀 크기 확대 (메인 제목의 50% 수준) */
         .hero p.sub-title { 
-            font-size: 2.5vw; /* 기존 1.5rem에서 대폭 확대 */
-            font-weight: 700; 
-            margin-bottom: 15px; 
-            text-transform: uppercase;
-            letter-spacing: -1px;
+            font-size: 2.5vw; font-weight: 700; margin-bottom: 15px; 
+            text-transform: uppercase; letter-spacing: -1px;
         }
         .hero p.desc { 
-            font-size: 2vw; /* 기존 1.2rem에서 확대 */
-            font-weight: 600; 
-            color: #333; 
-            word-break: keep-all;
+            font-size: 2vw; font-weight: 600; color: #333; word-break: keep-all;
         }
         .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-image img {
@@ -95,9 +92,7 @@
 
         /* [SECTION 3] CAREER HISTORY */
         .history-container {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
+            display: flex; flex-direction: column; gap: 60px;
         }
         .history-group h3 {
             font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center;
@@ -106,191 +101,98 @@
             content: ''; display: inline-block; width: 12px; height: 12px; background: var(--black); margin-right: 10px;
         }
         .history-list {
-            border-left: 1px solid var(--line);
-            padding-left: 30px;
-            margin-left: 6px;
+            border-left: 1px solid var(--line); padding-left: 30px; margin-left: 6px;
         }
-        .history-item {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #444;
-        }
+        .history-item { margin-bottom: 15px; font-size: 1.1rem; color: #444; }
         .history-item .date {
-            display: inline-block;
-            min-width: 160px;
-            font-family: 'Pretendard', monospace; /* 숫자 가독성 */
-            color: #666;
-            font-weight: 500;
+            display: inline-block; min-width: 160px; font-family: 'Pretendard', monospace; color: #666; font-weight: 500;
         }
-        .history-item.highlight {
-            font-weight: 700;
-            color: var(--black);
-            font-size: 1.2rem;
-        }
-        .history-item.highlight .date {
-            color: var(--black);
-            font-weight: 800;
-        }
+        .history-item.highlight { font-weight: 700; color: var(--black); font-size: 1.2rem; }
+        .history-item.highlight .date { color: var(--black); font-weight: 800; }
 
-        /* [SECTION 4] SKILLS (수정됨: 배경색 통일) */
+        /* [SECTION 4] SKILLS (수정: 블렌드 모드 삭제) */
         .skill-container {
-            display: flex;
-            flex-direction: column;
-            gap: 80px;
+            display: flex; flex-direction: column; gap: 80px;
         }
         .skill-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .skill-text {
-            flex: 0 0 30%;
-            padding-right: 20px;
+            flex: 0 0 30%; padding-right: 20px;
         }
-        .skill-text h3 {
-            font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;
-        }
-        .skill-text p {
-            font-size: 1rem; color: #555; word-break: keep-all;
-        }
+        .skill-text h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
+        .skill-text p { font-size: 1rem; color: #555; word-break: keep-all; }
+        
         .skill-image {
             flex: 1;
-            /* [수정 포인트] 이미지 배경색과 동일한 색상 적용 */
             background: var(--skill-bg);
-            padding: 30px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid var(--skill-border);
+            padding: 40px;
+            border-radius: 20px;
+            display: flex; justify-content: center; align-items: center;
+            
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                        border-color 0.3s;
+            cursor: default;
         }
-        .skill-image img {
-            width: 100%;
-            max-width: 700px;
-            height: auto;
-            object-fit: contain;
-            /* 이미지가 투명하지 않을 경우 테두리가 보이지 않도록 함 */
-            mix-blend-mode: multiply; 
+        
+        .skill-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #d0d0d0;
         }
 
-        /* [SECTION 5] KEY PROJECTS (수정됨: 4개 항목으로 재구성 & 디자인 개선) */
+        .skill-image img {
+            width: 100%; max-width: 700px; height: auto; object-fit: contain;
+            /* [수정 완료] 기존의 mix-blend-mode: multiply; 삭제함 */
+            /* 이제 이미지 원래 색상 그대로 깔끔하게 나옵니다. */
+        }
+
+        /* [SECTION 5] KEY PROJECTS */
         .project-item {
-            display: flex;
-            border-bottom: 1px solid var(--black);
-            transition: background-color 0.3s;
-            cursor: pointer;
-            min-height: 450px; /* 높이 확보 */
+            display: flex; border-bottom: 1px solid var(--black); transition: background-color 0.3s; cursor: pointer; min-height: 450px;
         }
         .project-item:hover { background-color: var(--gray); }
-        
         .project-left {
-            flex: 0 0 350px; /* 왼쪽 너비 고정 */
-            padding: 60px 40px;
-            border-right: 1px solid var(--black);
-            font-size: 2.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            line-height: 1.1;
+            flex: 0 0 350px; padding: 60px 40px; border-right: 1px solid var(--black);
+            font-size: 2.2rem; font-weight: 900; text-transform: uppercase;
+            display: flex; flex-direction: column; justify-content: space-between; line-height: 1.1;
         }
-        
-        .project-num {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 40px;
-            color: #666;
-            font-family: monospace;
-        }
-
+        .project-num { font-size: 1.2rem; font-weight: 500; margin-bottom: 40px; color: #666; font-family: monospace; }
         .project-right {
-            flex: 1;
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex: 1; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
         }
-
         .project-right .tag {
-            display: inline-block;
-            padding: 6px 14px;
-            border: 1px solid var(--black);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: var(--white);
-            width: fit-content;
+            display: inline-block; padding: 6px 14px; border: 1px solid var(--black);
+            border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px;
+            background: var(--white); width: fit-content;
         }
-
-        .project-right h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 800;
-            word-break: keep-all;
-        }
-
-        .project-right ul {
-            list-style: none;
-        }
-
+        .project-right h3 { font-size: 2rem; margin-bottom: 30px; font-weight: 800; word-break: keep-all; }
+        .project-right ul { list-style: none; }
         .project-right ul li {
-            margin-bottom: 15px;
-            font-size: 1.15rem;
-            position: relative;
-            padding-left: 20px;
-            color: #333;
-            line-height: 1.6;
+            margin-bottom: 15px; font-size: 1.15rem; position: relative; padding-left: 20px; color: #333; line-height: 1.6;
         }
+        .project-right ul li::before { content: '•'; position: absolute; left: 0; color: var(--black); font-weight: bold; }
 
-        .project-right ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--black);
-            font-weight: bold;
-        }
-
-        /* [FOOTER] (수정됨: 이메일 분리) */
+        /* [FOOTER] */
         footer { background: var(--black); color: var(--white); padding: 80px 5vw; text-align: center; }
         footer h2 { font-size: 4vw; margin-bottom: 50px; text-transform: uppercase; letter-spacing: -1px; }
-        
         .contact-box {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-bottom: 40px;
-            text-align: left;
+            display: flex; justify-content: center; gap: 60px; margin-bottom: 40px; text-align: left;
         }
-        
-        .contact-item h4 {
-            font-size: 0.9rem;
-            opacity: 0.6;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-        
-        .contact-item p {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .contact-item a {
-            border-bottom: 1px solid #555;
-            padding-bottom: 2px;
-            transition: color 0.3s;
-        }
+        .contact-item h4 { font-size: 0.9rem; opacity: 0.6; margin-bottom: 5px; text-transform: uppercase; }
+        .contact-item p { font-size: 1.3rem; font-weight: 600; }
+        .contact-item a { border-bottom: 1px solid #555; padding-bottom: 2px; transition: color 0.3s; }
         .contact-item a:hover { color: #aaa; border-color: #aaa; }
 
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             header { padding: 0 20px; height: 60px; } header .logo { font-size: 1.2rem; } header nav { display: none; }
-            
             .hero { flex-direction: column-reverse; justify-content: center; text-align: center; padding-top: 100px; }
             .hero h1 { font-size: 10vw; margin-bottom: 20px; } 
             .hero p.sub-title { font-size: 5vw; margin-bottom: 10px; } 
             .hero p.desc { font-size: 4vw; }
-            
             section { padding: 80px 20px; } h2.section-title { font-size: 2rem; }
             
             .skill-row { flex-direction: column; gap: 20px; align-items: flex-start; }
@@ -298,11 +200,8 @@
             
             .project-item { flex-direction: column; min-height: auto; }
             .project-left { border-right: none; border-bottom: 1px solid var(--black); padding: 40px 20px; flex: auto; width: 100%; font-size: 1.8rem;}
-            .project-right { padding: 40px 20px; }
-            .project-right h3 { font-size: 1.5rem; }
-            
-            .contact-box { flex-direction: column; gap: 30px; text-align: center; }
-            .contact-item { text-align: center; }
+            .project-right { padding: 40px 20px; } .project-right h3 { font-size: 1.5rem; }
+            .contact-box { flex-direction: column; gap: 30px; text-align: center; } .contact-item { text-align: center; }
         }
     </style>
 </head>
