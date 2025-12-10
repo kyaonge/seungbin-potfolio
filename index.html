@@ -13,10 +13,7 @@
             --white: #fff;
             --gray: #f9f9f9;
             --line: #e5e5e5;
-            
-            /* [배경색] 이미지 배경과 동일하게 #EEEEEE 설정 */
             --skill-bg: #EEEEEE; 
-            /* [테두리] 요청하신 #E0E0E0 설정 */
             --skill-border: #E0E0E0; 
         }
 
@@ -83,46 +80,135 @@
         }
         h2.section-title { font-size: 3rem; font-weight: 800; margin-bottom: 60px; text-transform: uppercase; letter-spacing: -1px; }
 
-        /* [SECTION 2] IDENTITY */
-        .identity-content h2 {
+        /* [SECTION 2] IDENTITY & VIEWER */
+        .identity-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* 상단 정렬 */
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .identity-text-area {
+            flex: 1;
+            padding-right: 20px;
+            /* [수정] sticky 제거하여 스크롤 안 따라오게 변경 */
+            position: static; 
+        }
+
+        .identity-text-area h2 {
             font-size: 3rem; font-weight: 700; line-height: 1.4; margin-bottom: 40px; word-break: keep-all;
         }
-        .identity-content p { font-size: 1.1rem; max-width: 800px; margin-bottom: 20px; color: #333; }
+        .identity-text-area p { font-size: 1.1rem; margin-bottom: 20px; color: #333; word-break: keep-all;}
         .name-highlight { background-color: var(--black); color: var(--white); padding: 0 10px; }
 
+        /* [수정] 포트폴리오 뷰어 크기 조절 및 스타일 개선 */
+        .portfolio-viewer-area {
+            /* [수정] 너비를 줄이고 고정하여 페이지에 맞춤 */
+            flex: 0 0 600px; 
+            max-width: 100%; /* 반응형을 위한 최대 너비 설정 */
+            background: #FAFAFA; 
+            padding: 30px;
+            border: 1px solid #E5E5E5; 
+            border-radius: 0; 
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .portfolio-viewer-area:hover {
+            border-color: #999;
+        }
+
+        .viewer-screen {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            background: #fff;
+            border: 1px solid #eee; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .viewer-screen img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .viewer-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px; 
+            margin-bottom: 30px;
+        }
+
+        .btn-control {
+            background: transparent;
+            border: 1px solid var(--black);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; 
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--black);
+        }
+
+        .btn-control:hover { 
+            background: var(--black); 
+            color: var(--white); 
+            transform: scale(1.1); 
+        }
+
+        .page-indicator { 
+            font-size: 1rem; 
+            font-weight: 600; 
+            font-family: 'Pretendard', sans-serif; 
+            min-width: 80px; 
+            letter-spacing: 1px;
+        }
+
+        .btn-download {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 0; 
+            border: 1px solid var(--black);
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-download:hover { 
+            background: var(--white); 
+            color: var(--black); 
+        }
+
+
         /* [SECTION 3] CAREER HISTORY */
-        .history-container {
-            display: flex; flex-direction: column; gap: 60px;
-        }
-        .history-group h3 {
-            font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center;
-        }
-        .history-group h3::before {
-            content: ''; display: inline-block; width: 12px; height: 12px; background: var(--black); margin-right: 10px;
-        }
-        .history-list {
-            border-left: 1px solid var(--line); padding-left: 30px; margin-left: 6px;
-        }
+        .history-container { display: flex; flex-direction: column; gap: 60px; }
+        .history-group h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; }
+        .history-group h3::before { content: ''; display: inline-block; width: 12px; height: 12px; background: var(--black); margin-right: 10px; }
+        .history-list { border-left: 1px solid var(--line); padding-left: 30px; margin-left: 6px; }
         .history-item { margin-bottom: 15px; font-size: 1.1rem; color: #444; }
-        .history-item .date {
-            display: inline-block; min-width: 160px; font-family: 'Pretendard', monospace; color: #666; font-weight: 500;
-        }
+        .history-item .date { display: inline-block; min-width: 160px; font-family: 'Pretendard', monospace; color: #666; font-weight: 500; }
         .history-item.highlight { font-weight: 700; color: var(--black); font-size: 1.2rem; }
         .history-item.highlight .date { color: var(--black); font-weight: 800; }
 
-        /* [SECTION 4] SKILLS (수정: 블렌드 모드 삭제) */
-        .skill-container {
-            display: flex; flex-direction: column; gap: 80px;
-        }
-        .skill-row {
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .skill-text {
-            flex: 0 0 30%; padding-right: 20px;
-        }
+        /* [SECTION 4] SKILLS */
+        .skill-container { display: flex; flex-direction: column; gap: 80px; }
+        .skill-row { display: flex; align-items: center; justify-content: space-between; }
+        .skill-text { flex: 0 0 30%; padding-right: 20px; }
         .skill-text h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
         .skill-text p { font-size: 1rem; color: #555; word-break: keep-all; }
-        
         .skill-image {
             flex: 1;
             background: var(--skill-bg);
@@ -130,29 +216,20 @@
             padding: 40px;
             border-radius: 20px;
             display: flex; justify-content: center; align-items: center;
-            
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        border-color 0.3s;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s;
             cursor: default;
         }
+        .skill-image:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #d0d0d0; }
         
-        .skill-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: #d0d0d0;
-        }
-
-        .skill-image img {
-            width: 100%; max-width: 700px; height: auto; object-fit: contain;
-            /* [수정 완료] 기존의 mix-blend-mode: multiply; 삭제함 */
-            /* 이제 이미지 원래 색상 그대로 깔끔하게 나옵니다. */
+        .skill-image img { 
+            width: 100%; 
+            max-width: 700px; 
+            height: auto; 
+            object-fit: contain; 
         }
 
         /* [SECTION 5] KEY PROJECTS */
-        .project-item {
-            display: flex; border-bottom: 1px solid var(--black); transition: background-color 0.3s; cursor: pointer; min-height: 450px;
-        }
+        .project-item { display: flex; border-bottom: 1px solid var(--black); transition: background-color 0.3s; cursor: pointer; min-height: 450px; }
         .project-item:hover { background-color: var(--gray); }
         .project-left {
             flex: 0 0 350px; padding: 60px 40px; border-right: 1px solid var(--black);
@@ -160,9 +237,7 @@
             display: flex; flex-direction: column; justify-content: space-between; line-height: 1.1;
         }
         .project-num { font-size: 1.2rem; font-weight: 500; margin-bottom: 40px; color: #666; font-family: monospace; }
-        .project-right {
-            flex: 1; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
-        }
+        .project-right { flex: 1; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
         .project-right .tag {
             display: inline-block; padding: 6px 14px; border: 1px solid var(--black);
             border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px;
@@ -170,24 +245,20 @@
         }
         .project-right h3 { font-size: 2rem; margin-bottom: 30px; font-weight: 800; word-break: keep-all; }
         .project-right ul { list-style: none; }
-        .project-right ul li {
-            margin-bottom: 15px; font-size: 1.15rem; position: relative; padding-left: 20px; color: #333; line-height: 1.6;
-        }
+        .project-right ul li { margin-bottom: 15px; font-size: 1.15rem; position: relative; padding-left: 20px; color: #333; line-height: 1.6; }
         .project-right ul li::before { content: '•'; position: absolute; left: 0; color: var(--black); font-weight: bold; }
 
         /* [FOOTER] */
         footer { background: var(--black); color: var(--white); padding: 80px 5vw; text-align: center; }
         footer h2 { font-size: 4vw; margin-bottom: 50px; text-transform: uppercase; letter-spacing: -1px; }
-        .contact-box {
-            display: flex; justify-content: center; gap: 60px; margin-bottom: 40px; text-align: left;
-        }
+        .contact-box { display: flex; justify-content: center; gap: 60px; margin-bottom: 40px; text-align: left; }
         .contact-item h4 { font-size: 0.9rem; opacity: 0.6; margin-bottom: 5px; text-transform: uppercase; }
         .contact-item p { font-size: 1.3rem; font-weight: 600; }
         .contact-item a { border-bottom: 1px solid #555; padding-bottom: 2px; transition: color 0.3s; }
         .contact-item a:hover { color: #aaa; border-color: #aaa; }
 
         /* 모바일 반응형 */
-        @media (max-width: 768px) {
+        @media (max-width: 960px) { /* [수정] 태블릿 breakpoint 조정 */
             header { padding: 0 20px; height: 60px; } header .logo { font-size: 1.2rem; } header nav { display: none; }
             .hero { flex-direction: column-reverse; justify-content: center; text-align: center; padding-top: 100px; }
             .hero h1 { font-size: 10vw; margin-bottom: 20px; } 
@@ -195,9 +266,14 @@
             .hero p.desc { font-size: 4vw; }
             section { padding: 80px 20px; } h2.section-title { font-size: 2rem; }
             
+            /* [수정] 모바일에서는 상하 배치 */
+            .identity-container { flex-direction: column; gap: 40px; }
+            .identity-text-area { padding-right: 0; width: 100%; position: static; }
+            .portfolio-viewer-area { flex: auto; width: 100%; max-width: none;} /* [수정] 모바일에선 꽉 차게 */
+            .viewer-screen { height: auto; aspect-ratio: 16 / 9; }
+
             .skill-row { flex-direction: column; gap: 20px; align-items: flex-start; }
             .skill-text { width: 100%; padding-right: 0; margin-bottom: 10px; }
-            
             .project-item { flex-direction: column; min-height: auto; }
             .project-left { border-right: none; border-bottom: 1px solid var(--black); padding: 40px 20px; flex: auto; width: 100%; font-size: 1.8rem;}
             .project-right { padding: 40px 20px; } .project-right h3 { font-size: 1.5rem; }
@@ -232,27 +308,52 @@
 
     <section id="identity">
         <span class="section-label">Identity</span>
-        <div class="identity-content">
-            <h2>
-                시대를 관통하는 서사성을 지닌 마케터,<br>
-                <span class="name-highlight">김승빈</span>입니다.
-            </h2>
-            <p>
-                데이터와 문학, 기술과 감성을 연결하여 플랫폼의 경계를 허뭅니다.
-                단순한 유통을 넘어, 콘텐츠가 가진 잠재력을 폭발시키는 Complete Narrative를 설계합니다.
-            </p>
-            <p>
-                KT Storywiz에서의 실무 경험과 직접 개발한 업무 자동화 툴을 통해
-                불가능을 효율로 바꾸고, 크리에이티브한 기획으로 숫자를 넘어선 가치를 증명해왔습니다.
-            </p>
+        
+        <div class="identity-container">
+            <div class="identity-text-area">
+                <h2>
+                    시대를 관통하는 서사성을 지닌 마케터,<br>
+                    <span class="name-highlight">김승빈</span>입니다.
+                </h2>
+                <p>
+                    데이터와 문학, 기술과 감성을 연결하여 플랫폼의 경계를 허뭅니다.
+                    단순한 유통을 넘어, 콘텐츠가 가진 잠재력을 폭발시키는 Complete Narrative를 설계합니다.
+                </p>
+                <p>
+                    KT Storywiz에서의 실무 경험과 직접 개발한 업무 자동화 툴을 통해
+                    불가능을 효율로 바꾸고, 크리에이티브한 기획으로 숫자를 넘어선 가치를 증명해왔습니다.
+                </p>
+            </div>
+
+            <div class="portfolio-viewer-area">
+                <div class="viewer-screen">
+                    <img id="pf-image" src="slides/page_1.jpg" alt="포트폴리오 슬라이드">
+                </div>
+                
+                <div class="viewer-controls">
+                    <button class="btn-control" onclick="prevPage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    
+                    <span id="page-indicator" class="page-indicator">1 / 47</span>
+                    
+                    <button class="btn-control" onclick="nextPage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+
+                <div class="download-area">
+                    <a href="https://drive.google.com/file/d/1SSnEmMgBDPi5P-v-_POYpT_uPdia0iqn/view?usp=sharing" target="_blank" class="btn-download">
+                        Download Full Portfolio
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="career-history">
         <h2 class="section-title">CAREER HISTORY</h2>
-        
         <div class="history-container">
-            
             <div class="history-group">
                 <h3>경력사항</h3>
                 <div class="history-list">
@@ -274,75 +375,44 @@
                     </div>
                 </div>
             </div>
-
             <div class="history-group">
                 <h3>수상이력</h3>
                 <div class="history-list">
-                    <div class="history-item">
-                        <span class="date">19.04.24.</span>
-                        19년 전반기 1포병여단 대대 전술훈련 유공 표창장
-                    </div>
-                    <div class="history-item">
-                        <span class="date">21.04.19.</span>
-                        하루체험 유튜브 영상 공모전 우수상
-                    </div>
-                    <div class="history-item">
-                        <span class="date">21.08.25.</span>
-                        연세대학교 인문예술대학 학과 홍보 영상 공모전 최우수상
-                    </div>
-                    <div class="history-item highlight">
-                        <span class="date">21.11.26.</span>
-                        제6회 LG화학 대학생 광고 공모전 최우수상
-                    </div>
-                    <div class="history-item">
-                        <span class="date">22.02.28.</span>
-                        진리장학금 학업성적 우등상
-                    </div>
-                    <div class="history-item highlight">
-                        <span class="date">22.08.26.</span>
-                        진리장학금 학업성적 최우등상
-                    </div>
+                    <div class="history-item"><span class="date">19.04.24.</span> 19년 전반기 1포병여단 대대 전술훈련 유공 표창장</div>
+                    <div class="history-item"><span class="date">21.04.19.</span> 하루체험 유튜브 영상 공모전 우수상</div>
+                    <div class="history-item"><span class="date">21.08.25.</span> 연세대학교 인문예술대학 학과 홍보 영상 공모전 최우수상</div>
+                    <div class="history-item highlight"><span class="date">21.11.26.</span> 제6회 LG화학 대학생 광고 공모전 최우수상</div>
+                    <div class="history-item"><span class="date">22.02.28.</span> 진리장학금 학업성적 우등상</div>
+                    <div class="history-item highlight"><span class="date">22.08.26.</span> 진리장학금 학업성적 최우등상</div>
                 </div>
             </div>
-
         </div>
     </section>
 
      <section id="skills">
         <h2 class="section-title">SKILLS & COMPETENCIES</h2>
-        
         <div class="skill-container">
-            
             <div class="skill-row">
                 <div class="skill-text">
                     <h3>MOS 및 문서</h3>
                     <p>문서 작업, 보고, 전략 분석, 기획안, 업무 관리 등 실무에 최적화된 능력을 보유하고 있습니다.</p>
                 </div>
-                <div class="skill-image">
-                    <img src="skill_doc.jpg" alt="MOS 및 문서 툴">
-                </div>
+                <div class="skill-image"><img src="skill_doc.jpg" alt="MOS 및 문서 툴"></div>
             </div>
-
             <div class="skill-row">
                 <div class="skill-text">
                     <h3>프로그램</h3>
                     <p>EPUB 유통, SNS 마케팅, 미디어 제작, 프로모션 배너를 위한 전문 디자인 및 편집 툴을 다룹니다.</p>
                 </div>
-                <div class="skill-image">
-                    <img src="skill_prog.jpg" alt="디자인 프로그램">
-                </div>
+                <div class="skill-image"><img src="skill_prog.jpg" alt="디자인 프로그램"></div>
             </div>
-
             <div class="skill-row">
                 <div class="skill-text">
                     <h3>코드 및 AI</h3>
                     <p>구글 시트 연동 및 자동화, 업무 보조 프로그램 제작(Python)을 통해 업무 효율을 극대화합니다.</p>
                 </div>
-                <div class="skill-image">
-                    <img src="skill_code.jpg" alt="코드 및 AI 툴">
-                </div>
+                <div class="skill-image"><img src="skill_code.jpg" alt="코드 및 AI 툴"></div>
             </div>
-
         </div>
     </section>
 
@@ -352,8 +422,7 @@
         
         <div class="project-item">
             <div class="project-left">
-                <span class="project-num">01</span>
-                Distribution<br>& Operation
+                <span class="project-num">01</span> Distribution<br>& Operation
             </div>
             <div class="project-right">
                 <span class="tag">MAIN CAREER</span>
@@ -369,8 +438,7 @@
 
         <div class="project-item">
             <div class="project-left">
-                <span class="project-num">02</span>
-                Platform<br>& EPUB
+                <span class="project-num">02</span> Platform<br>& EPUB
             </div>
             <div class="project-right">
                 <span class="tag">MD SPECIALTY</span>
@@ -386,8 +454,7 @@
 
         <div class="project-item">
             <div class="project-left">
-                <span class="project-num">03</span>
-                Tech<br>& Automation
+                <span class="project-num">03</span> Tech<br>& Automation
             </div>
             <div class="project-right">
                 <span class="tag">PYTHON & AI</span>
@@ -403,8 +470,7 @@
 
         <div class="project-item">
             <div class="project-left">
-                <span class="project-num">04</span>
-                Marketing<br>& Creative
+                <span class="project-num">04</span> Marketing<br>& Creative
             </div>
             <div class="project-right">
                 <span class="tag">SNS & DESIGN</span>
@@ -417,33 +483,53 @@
                 </ul>
             </div>
         </div>
-
     </section>
 
     <footer id="contact">
         <h2>Let's Make Next Story.</h2>
-        
         <div class="contact-box">
             <div class="contact-item">
-                <h4>Work Email</h4>
-                <p><a href="mailto:sb1.kim@kt.com">sb1.kim@kt.com</a></p>
+                <h4>Work Email</h4> <p><a href="mailto:sb1.kim@kt.com">sb1.kim@kt.com</a></p>
             </div>
-            
             <div class="contact-item">
-                <h4>Personal Email</h4>
-                <p><a href="mailto:genesis5220@yonsei.ac.kr">genesis5220@yonsei.ac.kr</a></p>
+                <h4>Personal Email</h4> <p><a href="mailto:genesis5220@yonsei.ac.kr">genesis5220@yonsei.ac.kr</a></p>
             </div>
-            
             <div class="contact-item">
-                <h4>Phone</h4>
-                <p>010-8735-7473</p>
+                <h4>Phone</h4> <p>010-8735-7473</p>
             </div>
         </div>
-
-        <p style="margin-top: 60px; opacity: 0.5; font-size: 0.8rem;">
-            © 2025 Kim Seung Bin. All Rights Reserved.
-        </p>
+        <p style="margin-top: 60px; opacity: 0.5; font-size: 0.8rem;">© 2025 Kim Seung Bin. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 47; 
+        const imgElement = document.getElementById("pf-image");
+        const indicator = document.getElementById("page-indicator");
+
+        function updateViewer() {
+            imgElement.src = `slides/page_${currentPage}.jpg`;
+            indicator.innerText = `${currentPage} / ${totalPages}`;
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+            } else {
+                currentPage = 1; 
+            }
+            updateViewer();
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+            } else {
+                currentPage = totalPages; 
+            }
+            updateViewer();
+        }
+    </script>
 
 </body>
 </html>
